@@ -124,4 +124,20 @@ pre {
 .spacer-container {
   flex: 1 1 0;
 }
+
+@media screen and (max-width: 1230px) {
+  .spacer-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #logo-container div {
+    font-size: 1rem;
+  }
+
+  #routes-container div a {
+    font-size: 1rem;
+  }
+}
 </style>
