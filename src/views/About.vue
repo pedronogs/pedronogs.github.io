@@ -13,33 +13,33 @@
           </li>
           <li>
             <i class="fas fa-angle-double-right"></i>
-            Interessado em <strong>administração de redes</strong> e
+            Interessado em <strong>programação</strong>,
+            <strong>inteligência artificial</strong>,
+            <strong>administração de redes</strong> e
             <strong>infraestrutura de redes</strong>.
           </li>
           <li>
             <i class="fas fa-angle-double-right"></i>
-            <strong>Programador</strong>👨‍💻: C/C++, Python, JavaScript, Bash,
-            Linux, conhecimento em redes.
-          </li>
-          <li>
-            <i class="fas fa-angle-double-right"></i>
-            <strong>Desenvolvedor WEB e Desktop</strong><br />
-            <pre>
-     > Front-End: HTML + CSS + JavaScript = Electron + VueJS 😍.</pre
+            <strong>Linguagens de programação: 👨‍💻</strong><br />
+            <span style="margin-left: 20px"
+              >><strong style="margin-left: 20px">Geral:</strong> C/C++ | Python
+              | JavaScript | Bash.</span
+            ><br />
+            <span style="margin-left: 20px"
+              >><strong style="margin-left: 20px">WEB e Desktop:</strong> PHP |
+              HTML + CSS + JS = VueJS + Electron + NodeJS 😍.</span
             >
-            <pre>   > Back-End: JavaScript (Node.js) e PHP (Slim).</pre>
-            <pre>   > Habilidade com ferramentas relacionadas.</pre>
           </li>
         </ul>
 
         <a id="github-button" href="../assets/curriculo.pdf" download>
           <div>
             Acesse meu currículo completo
-            <i class="fas fa-file-alt" style="margin-left: 10px;"></i>
+            <i class="fas fa-file-alt" style="margin-left: 20px;"></i>
           </div>
         </a>
         <sup style="margin: auto; margin-top: 10px;"
-          >Atualizado em: 02/10/2020</sup
+          >Atualizado em: 22/12/2020</sup
         >
       </div>
 
