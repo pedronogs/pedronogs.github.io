@@ -1,8 +1,8 @@
 <template>
-  <div id="about-container">
+  <v-container fluid>
     <div id="about-card">
       <div class="card-text">
-        <h1>Pedro Henrique Nogueira da Silva</h1>
+        <h2>Pedro Henrique Nogueira da Silva</h2>
         <sup>também conhecido como Pedro "Nogs"</sup>
 
         <ul>
@@ -49,14 +49,14 @@
         <img class="card-photo" src="../assets/personal-image.jpg" />
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "About"
+  name: "About",
 });
 </script>
 
