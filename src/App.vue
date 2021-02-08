@@ -2,15 +2,15 @@
   <v-app>
     <!-- Navbar -->
     <div class="d-flex justify-space-between pt-5 px-md-16 px-5" id="navbar">
-      <span>Pedro <strong>"Nogs"</strong></span>
+      <span class="text-h5">Pedro <strong>"Nogs"</strong></span>
 
       <!-- Router for > SM devices -->
       <div class="d-sm-flex d-none">
-        <div class="route-item">
+        <div class="route-item text-h5">
           <router-link to="/">Sobre</router-link>
         </div>
 
-        <div class="ml-3" style="font-weight: bold;">
+        <div class="text-h5 ml-3">
           <router-link to="/projects">Projetos</router-link>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <a href="https://github.com/pedronogs">
           <div class="social-icons ml-3 pl-2 pr-2" style="background: #10851a;">
             <i
-              class="fab fa-github "
+              class="fab fa-github"
               style="transform: translateY(3%) translateX(1%);"
             ></i>
           </div>
@@ -100,7 +100,7 @@
       </v-navigation-drawer>
     </div>
 
-    <v-main class="mt-5">
+    <v-main class="d-flex align-center">
       <router-view />
     </v-main>
   </v-app>
@@ -163,8 +163,6 @@ a:hover {
 
 /* Class styling */
 .route-item {
-  font-weight: bold;
-
   padding-right: 10px;
   padding-left: 10px;
   border-right: solid 2px var(--primary-color);
@@ -177,6 +175,12 @@ a:hover {
 
 /* ID styling */
 #navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+
   font-size: 1.5rem;
 }
 

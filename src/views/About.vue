@@ -1,53 +1,108 @@
 <template>
-  <v-container fluid>
-    <div id="about-card">
-      <div class="card-text">
-        <h2>Pedro Henrique Nogueira da Silva</h2>
-        <sup>também conhecido como Pedro "Nogs"</sup>
+  <v-container>
+    <div
+      class="d-flex flex-column flex-md-row justify-center align-center"
+      style="position: relative; z-index: 10"
+    >
+      <!-- Photo -->
+      <div id="card-photo">
+        <img src="../assets/personal-image.jpg" />
+      </div>
 
-        <ul>
-          <li>
-            <i class="fas fa-angle-double-right"></i>
+      <!-- Description -->
+      <div class="d-flex flex-column justify-center align-center ml-md-10">
+        <div style="min-width: 100%;">
+          <v-btn
+            class="float-right mb-5"
+            color="primary"
+            v-if="randomWords.length > 0"
+            @click="randomWords = []"
+            >Limpar Tela</v-btn
+          >
+        </div>
+
+        <v-card shaped max-width="100%" class="text-center pa-3">
+          <v-card-title class="justify-center text-h5 font-weight-bold">
+            👨‍💻 Pedro Henrique Nogueira da Silva 👨‍💻
+          </v-card-title>
+
+          <v-card-subtitle>também conhecido como Pedro "Nogs"</v-card-subtitle>
+
+          <v-card-text
+            class="text-left mt-5 headline text-body-1 font-weight-bold"
+          >
             Graduando em
-            <strong>Engenharia de Redes de Comunicação</strong> pela UNB.
-          </li>
-          <li>
-            <i class="fas fa-angle-double-right"></i>
-            Interessado em <strong>programação</strong>,
-            <strong>inteligência artificial</strong>,
-            <strong>administração de redes</strong> e
-            <strong>infraestrutura de redes</strong>.
-          </li>
-          <li>
-            <i class="fas fa-angle-double-right"></i>
-            <strong>Linguagens de programação: 👨‍💻</strong><br />
-            <span style="margin-left: 20px"
-              >><strong style="margin-left: 20px">Geral:</strong> C/C++ | Python
-              | JavaScript | Bash.</span
-            ><br />
-            <span style="margin-left: 20px"
-              >><strong style="margin-left: 20px">WEB e Desktop:</strong> PHP |
-              HTML + CSS + JS = VueJS + Electron + NodeJS 😍.</span
-            >
-          </li>
-        </ul>
+            <strong>Engenharia de Redes de Comunicação</strong> pela
+            Universidade de Brasília <strong>(UNB)</strong>. <br /><br />
 
-        <a id="github-button" href="../assets/curriculo.pdf" download>
-          <div>
-            Acesse meu currículo completo
-            <i class="fas fa-file-alt" style="margin-left: 20px;"></i>
-          </div>
-        </a>
-        <sup style="margin: auto; margin-top: 10px;"
-          >Atualizado em: 22/12/2020</sup
-        >
+            Proeficiente e admirado por: <br />
+            <i
+              class="fas fa-angle-double-right ml-5 mr-2"
+              style="color: var(--primary-color)"
+            ></i>
+            Redes de computadores (infraestrutura e administração). <br />
+            <i
+              class="fas fa-angle-double-right ml-5 mr-2"
+              style="color: var(--primary-color)"
+            ></i>
+            Programação (desenvolvimento de software e automação de processos).
+          </v-card-text>
+        </v-card>
+
+        <!-- Dinamic buttons to display labels -->
+        <div class="d-flex justify-space-between mt-5">
+          <v-btn
+            min-width="25%"
+            class="label-button"
+            @click="
+              labels.languages.count++;
+              addRandomWord(labels.languages.values[labels.languages.count]);
+            "
+          >
+            {{ labels.languages.values[labels.languages.count] }}
+            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
+          </v-btn>
+
+          <v-btn
+            min-width="25%"
+            class="label-button ml-5"
+            @click="
+              labels.frameworks.count++;
+              addRandomWord(labels.frameworks.values[labels.frameworks.count]);
+            "
+          >
+            {{ labels.frameworks.values[labels.frameworks.count] }}
+            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
+          </v-btn>
+
+          <v-btn
+            min-width="25%"
+            class="label-button ml-5"
+            @click="
+              labels.tools.count++;
+              addRandomWord(labels.tools.values[labels.tools.count]);
+            "
+          >
+            {{ labels.tools.values[labels.tools.count] }}
+            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
+          </v-btn>
+        </div>
       </div>
+    </div>
 
-      <div class="spacer"></div>
-
-      <div class="card-image">
-        <img class="card-photo" src="../assets/personal-image.jpg" />
-      </div>
+    <!-- Random positioned words on screen  -->
+    <div id="background-div">
+      <span
+        :style="{
+          top: randomPosition() + 'px',
+          right: randomPosition(false) + 'px',
+          transform: 'rotate(' + randomPosition(false, true) + 'deg)',
+        }"
+        class="random-word"
+        v-for="(word, index) in randomWords"
+        :key="index"
+        >{{ word }}</span
+      >
     </div>
   </v-container>
 </template>
@@ -57,208 +112,128 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "About",
+  data: function() {
+    return {
+      labels: {
+        languages: {
+          values: [
+            "Programação",
+            "JavaScript",
+            "TypeScript",
+            "Python",
+            "C / C++",
+            "PHP",
+            "Bash",
+            "SQL",
+          ],
+          count: 0,
+        },
+        frameworks: {
+          values: [
+            "Frameworks",
+            "Vue (WEB, Front-End)",
+            "Electron (Desktop, Front-End)",
+            "SLIM (WEB, Back-End)",
+            "Node (WEB, Back-End)",
+            "PostgreSQL (Banco)",
+            "OracleSQL (Banco)",
+            "MongoDB (Banco)",
+          ],
+          count: 0,
+        },
+        tools: {
+          values: ["Ferramentas", "GIT", "Docker (Infra)", "Office"],
+          count: 0,
+        },
+      },
+      randomWords: [] as Array<string>,
+    };
+  },
+
+  watch: {
+    "labels.languages.count": function(oldValue) {
+      if (oldValue >= this.labels.languages.values.length) {
+        this.labels.languages.count = 0;
+      }
+    },
+
+    "labels.frameworks.count": function(oldValue) {
+      if (oldValue >= this.labels.frameworks.values.length) {
+        this.labels.frameworks.count = 0;
+      }
+    },
+
+    "labels.tools.count": function(oldValue) {
+      if (oldValue >= this.labels.tools.values.length) {
+        this.labels.tools.count = 0;
+      }
+    },
+  },
+
+  methods: {
+    // Calculates random position between window Height or Width (or rotation between 0 < 90  or 270 < 360)
+    randomPosition(vertical = true, rotation = false) {
+      if (rotation === true) {
+        let degree = Math.floor(Math.random() * 45);
+
+        if (degree % 2 == 0) degree = 360 - degree;
+
+        return degree;
+      }
+
+      let position = 0;
+      if (vertical === true)
+        position = Math.floor(Math.random() * window.innerHeight);
+      else position = Math.floor(Math.random() * window.innerWidth);
+
+      return position;
+    },
+
+    // Add word to list of random positioned words if it's not present yet
+    addRandomWord(word: string) {
+      if (!this.randomWords.includes(word)) {
+        this.randomWords.push(word);
+      }
+    },
+  },
 });
 </script>
 
 <style scoped>
-#about-container {
-  display: flex;
-  flex-direction: column;
+#background-div {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
 
+#card-photo {
+  width: 30%;
+}
+
+#card-photo img {
   width: 100%;
-
-  justify-content: center;
-  align-items: center;
-
-  padding: 50px;
-  margin-top: 60px;
-
-  color: var(--text-color);
-  text-align: justify;
-}
-
-#about-card {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  width: 100%;
-
-  justify-content: center;
-  align-items: center;
-}
-
-.card-text {
-  flex: 4 1 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-text h1 {
-  font-size: 4rem;
-  font-weight: 700;
-}
-
-.card-text sup {
-  font-size: 1rem;
-  font-weight: bold;
-  color: grey;
-}
-
-.card-text ul {
-  margin-top: 50px;
-}
-
-.card-text li {
-  list-style-type: none;
-
-  font-size: 1.6rem;
-  font-weight: 300;
-
-  margin-top: 10px;
-}
-
-.card-text li i {
-  margin-right: 15px;
-
-  color: var(--primary-color);
-}
-
-#about-card .spacer {
-  flex: 1 1 0;
-}
-
-.card-image {
-  flex: 2 1 0;
-  display: flex;
-
-  margin: auto;
-}
-
-.card-image .card-photo {
-  width: 80%;
 
   border: 5px solid white;
   border-radius: 1000px;
 }
 
-#github-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.label-button {
+  color: white !important;
+  font-weight: bold;
+  background-color: var(--primary-color) !important;
+  border: solid 1px white;
+}
 
-  margin: auto;
-  margin-top: 50px;
-  padding: 20px;
-  border-radius: 10px;
-
-  width: 30%;
-  height: 10%;
-
-  background-color: var(--primary-color);
-
-  font-size: 1.2rem;
+.random-word {
+  position: absolute !important;
+  font-size: 0.7rem;
   font-weight: bolder;
-  text-align: center;
-}
-
-/* Media Queries */
-@media screen and (max-width: 1230px) {
-  #about-container {
-    padding: 0;
-  }
-
-  #about-card {
-    flex-direction: column;
-  }
-
-  .card-text {
-    padding: 0;
-    width: 90%;
-  }
-
-  .card-text h1 {
-    text-align: center;
-  }
-
-  .card-text ul {
-    padding: 0;
-    margin-top: 30px;
-  }
-
-  .card-image {
-    justify-content: center;
-  }
-
-  .card-image .card-photo {
-    width: 50%;
-    margin-top: 30px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .card-text h1 {
-    font-size: 3rem;
-  }
-
-  .card-text li {
-    font-size: 1.2rem;
-  }
-
-  #github-button {
-    font-size: 1rem;
-    width: 30%;
-    height: 2.5%;
-    padding: 10px;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .card-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .card-text sup {
-    font-size: 0.6rem;
-  }
-
-  .card-text li {
-    font-size: 1rem;
-  }
-
-  #github-button {
-    font-size: 0.8rem;
-    width: 40%;
-    height: 2.5%;
-    padding: 10px;
-    margin-top: 20px;
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .card-text h1 {
-    font-size: 1.5rem;
-  }
-
-  .card-text li {
-    font-size: 0.8rem;
-  }
-
-  #github-button {
-    font-size: 0.8rem;
-    width: 60%;
-    height: 2%;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .card-text h1 {
-    font-size: 1.45rem;
-    font-weight: bolder;
-  }
-
-  .card-text li {
-    font-size: 0.7rem;
-  }
+  opacity: 0.3;
+  color: var(--secondary-color);
 }
 </style>
