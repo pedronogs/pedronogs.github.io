@@ -5,52 +5,77 @@
       style="position: relative; z-index: 10"
     >
       <!-- Photo -->
-      <div id="card-photo">
-        <img src="../assets/personal-image.jpg" />
+      <div class="d-flex flex-column align-center mt-16 mt-md-0">
+        <img id="card-photo" src="../assets/personal-image.jpg" />
+
+        <div class="mt-3">
+          <span class="justify-center text-h6 text-md-h5 font-weight-bold">
+            Pedro Henrique Nogueira da Silva <br />
+          </span>
+
+          <sup>também conhecido como <strong>Pedro "Nogs"</strong></sup>
+        </div>
       </div>
 
       <!-- Description -->
-      <div class="d-flex flex-column justify-center align-center ml-md-10">
+      <div
+        class="d-flex flex-column justify-center align-center mt-5 mt-md-0 ml-md-10"
+      >
         <div style="min-width: 100%;">
           <v-btn
             class="float-right mb-5"
             color="primary"
             v-if="randomWords.length > 0"
-            @click="randomWords = []"
+            @click="
+              randomWords = [];
+              resetLabelCount();
+            "
             >Limpar Tela</v-btn
           >
         </div>
 
-        <v-card shaped max-width="100%" class="text-center pa-3">
-          <v-card-title class="justify-center text-h5 font-weight-bold">
-            👨‍💻 Pedro Henrique Nogueira da Silva 👨‍💻
-          </v-card-title>
-
-          <v-card-subtitle>também conhecido como Pedro "Nogs"</v-card-subtitle>
-
+        <v-card
+          shaped
+          color="black"
+          class="text-center pa-2"
+          style="border-left: solid 2px var(--secondary-color) !important;"
+        >
+          <!-- prettier-ignore -->
           <v-card-text
-            class="text-left mt-5 headline text-body-1 font-weight-bold"
+            class="text-justify text-body-2 text-md-body-1 font-weight-bold"
+            style="color: white;"
           >
-            Graduando em
-            <strong>Engenharia de Redes de Comunicação</strong> pela
-            Universidade de Brasília <strong>(UNB)</strong>. <br /><br />
+            <strong class="text-primary">pedronogs: ~# </strong>
+            Graduando em 
+            <span style="border-bottom: solid 1px var(--primary-color)">Engenharia de Redes de Comunicação</span>
+            pela Universidade de Brasília
+            (UNB), atualmente cursando o 8º semestre. 
+            
+            <br /><br />
 
-            Proeficiente e admirado por: <br />
-            <i
-              class="fas fa-angle-double-right ml-5 mr-2"
-              style="color: var(--primary-color)"
-            ></i>
-            Redes de computadores (infraestrutura e administração). <br />
-            <i
-              class="fas fa-angle-double-right ml-5 mr-2"
-              style="color: var(--primary-color)"
-            ></i>
-            Programação (desenvolvimento de software e automação de processos).
+            <strong class="text-primary">pedronogs: ~# </strong>
+            Proeficiente e inspirado a trabalhar com: 
+            
+            <br />
+
+            <i class="fas fa-angle-double-right ml-5 mr-2" style="color: var(--primary-color)"></i>
+            <strong>Redes de computadores</strong> (infraestrutura e administração). 
+            
+            <br />
+
+            <i class="fas fa-angle-double-right ml-5 mr-2" style="color: var(--primary-color)"></i>
+            <strong>Programação </strong>(desenvolvimento de software e automação de processos).
           </v-card-text>
         </v-card>
 
+        <div class="mt-4">
+          <h3>HABILIDADES</h3>
+        </div>
+
         <!-- Dinamic buttons to display labels -->
-        <div class="d-flex justify-space-between mt-5">
+        <div
+          class="d-flex flex-column flex-md-row justify-space-between mt-5 mb-16 mb-md-0"
+        >
           <v-btn
             min-width="25%"
             class="label-button"
@@ -65,7 +90,7 @@
 
           <v-btn
             min-width="25%"
-            class="label-button ml-5"
+            class="label-button ml-0 ml-md-5 mt-5 mt-md-0"
             @click="
               labels.frameworks.count++;
               addRandomWord(labels.frameworks.values[labels.frameworks.count]);
@@ -77,7 +102,7 @@
 
           <v-btn
             min-width="25%"
-            class="label-button ml-5"
+            class="label-button ml-0 ml-md-5 mt-5 mt-md-0"
             @click="
               labels.tools.count++;
               addRandomWord(labels.tools.values[labels.tools.count]);
@@ -98,7 +123,7 @@
           right: randomPosition(false) + 'px',
           transform: 'rotate(' + randomPosition(false, true) + 'deg)',
         }"
-        class="random-word"
+        class="random-word text-caption text-md-body-1"
         v-for="(word, index) in randomWords"
         :key="index"
         >{{ word }}</span
@@ -117,7 +142,7 @@ export default Vue.extend({
       labels: {
         languages: {
           values: [
-            "Programação",
+            "Linguagens",
             "JavaScript",
             "TypeScript",
             "Python",
@@ -171,10 +196,10 @@ export default Vue.extend({
   },
 
   methods: {
-    // Calculates random position between window Height or Width (or rotation between 0 < 90  or 270 < 360)
+    // Calculates random position between window Height or Width (or rotation between 0 < 30  or 330 < 360)
     randomPosition(vertical = true, rotation = false) {
       if (rotation === true) {
-        let degree = Math.floor(Math.random() * 45);
+        let degree = Math.floor(Math.random() * 30);
 
         if (degree % 2 == 0) degree = 360 - degree;
 
@@ -183,8 +208,9 @@ export default Vue.extend({
 
       let position = 0;
       if (vertical === true)
-        position = Math.floor(Math.random() * window.innerHeight);
-      else position = Math.floor(Math.random() * window.innerWidth);
+        position = Math.floor(Math.random() * (window.innerHeight - 200) + 100);
+      else
+        position = Math.floor(Math.random() * (window.innerWidth - 200) + 100);
 
       return position;
     },
@@ -194,6 +220,13 @@ export default Vue.extend({
       if (!this.randomWords.includes(word)) {
         this.randomWords.push(word);
       }
+    },
+
+    // Reset all label counting (return labels to default value)
+    resetLabelCount() {
+      this.labels.languages.count = 0;
+      this.labels.frameworks.count = 0;
+      this.labels.tools.count = 0;
     },
   },
 });
@@ -212,13 +245,8 @@ export default Vue.extend({
 }
 
 #card-photo {
-  width: 30%;
-}
+  width: 50%;
 
-#card-photo img {
-  width: 100%;
-
-  border: 5px solid white;
   border-radius: 1000px;
 }
 
@@ -226,14 +254,16 @@ export default Vue.extend({
   color: white !important;
   font-weight: bold;
   background-color: var(--primary-color) !important;
-  border: solid 1px white;
 }
 
 .random-word {
   position: absolute !important;
-  font-size: 0.7rem;
   font-weight: bolder;
   opacity: 0.3;
   color: var(--secondary-color);
+}
+
+/* Media queries */
+@media screen and (max-width: 960px) {
 }
 </style>

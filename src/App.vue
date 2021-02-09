@@ -1,17 +1,60 @@
 <template>
   <v-app>
+    <!-- Sandwiched navigation drawer -->
+    <v-navigation-drawer
+      absolute
+      right
+      class="pa-3"
+      style="background-color: #565254; z-index: 20 !important;"
+      v-model="drawer"
+    >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title
+            style="color: var(--text-color); letter-spacing: 3px;"
+          >
+            <strong>MENU</strong>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense>
+        <v-list-item>
+          <v-list-item-icon>
+            <i class="fas fa-user" style="color: var(--primary-color)"></i>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <router-link to="/">Sobre</router-link>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item>
+          <v-list-item-icon>
+            <i class="fas fa-tasks" style="color: var(--primary-color)"></i>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <router-link to="/projects">Projetos</router-link>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
     <!-- Navbar -->
     <div class="d-flex justify-space-between pt-5 px-md-16 px-5" id="navbar">
-      <span class="text-h5">Pedro <strong>"Nogs"</strong></span>
+      <span class="text-h5 text-primary">Pedro <strong>"Nogs"</strong></span>
 
       <!-- Router for > SM devices -->
       <div class="d-sm-flex d-none">
-        <div class="route-item text-h5">
-          <router-link to="/">Sobre</router-link>
+        <div class="route-item text-button">
+          <router-link to="/" class="pa-3">Sobre</router-link>
         </div>
 
-        <div class="text-h5 ml-3">
-          <router-link to="/projects">Projetos</router-link>
+        <div class="route-item text-button">
+          <router-link to="/projects" class="pa-3">Projetos</router-link>
         </div>
       </div>
 
@@ -55,49 +98,6 @@
       <div class="d-sm-none">
         <i class="fas fa-bars" @click="drawer = !drawer"></i>
       </div>
-
-      <!-- Sandwiched navigation drawer -->
-      <v-navigation-drawer
-        absolute
-        right
-        class="pa-3"
-        style="background-color: #565254"
-        v-model="drawer"
-      >
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title
-              style="color: var(--text-color); letter-spacing: 3px;"
-            >
-              <strong>MENU</strong>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list dense nav>
-          <v-list-item>
-            <v-list-item-icon>
-              <i class="fas fa-user" style="color: var(--primary-color)"></i>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <router-link to="/">Sobre</router-link>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <i class="fas fa-tasks" style="color: var(--primary-color)"></i>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <router-link to="/projects">Projetos</router-link>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
     </div>
 
     <v-main class="d-flex align-center">
@@ -123,9 +123,9 @@ export default Vue.extend({
 /* Global configurations */
 :root {
   --background: #121214;
-  --primary-color: #ff812d;
+  --primary-color: #f26531;
   --primary-color-hover: #ff812d;
-  --secondary-color: #ded11f;
+  --secondary-color: #f3e413;
   --text-color: #eeeeee;
   --secondary-text-color: #acacac;
 }
@@ -153,19 +153,23 @@ a:hover {
 }
 
 /* Vuetify customization */
-.router-link-active {
-  color: var(--secondary-text-color) !important;
-}
-
 .router-link-exact-active {
   color: var(--text-color) !important;
+  border-bottom: solid 2px var(--primary-color);
 }
 
 /* Class styling */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
 .route-item {
   padding-right: 10px;
   padding-left: 10px;
-  border-right: solid 2px var(--primary-color);
 }
 
 .social-icons {
@@ -182,9 +186,5 @@ a:hover {
   z-index: 10;
 
   font-size: 1.5rem;
-}
-
-/* Media queries */
-@media screen and (max-width: 800px) {
 }
 </style>
