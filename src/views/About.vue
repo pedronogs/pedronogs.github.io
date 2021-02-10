@@ -2,11 +2,11 @@
   <v-container>
     <div
       class="d-flex flex-column flex-md-row justify-center align-center"
-      style="position: relative; z-index: 10"
+      id="about-container"
     >
-      <!-- Photo -->
-      <div class="d-flex flex-column align-center mt-16 mt-md-0">
-        <img id="card-photo" src="../assets/personal-image.jpg" />
+      <!-- Photo and label -->
+      <div class="d-flex flex-column align-center" id="photo-container">
+        <img id="photo" src="../assets/personal-image.jpg" />
 
         <div class="mt-3">
           <span class="justify-center text-h6 text-md-h5 font-weight-bold">
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <!-- Description -->
+      <!-- Main Card - About description -->
       <div
         class="d-flex flex-column justify-center align-center mt-5 mt-md-0 ml-md-10"
       >
@@ -41,10 +41,7 @@
           style="border-left: solid 2px var(--secondary-color) !important;"
         >
           <!-- prettier-ignore -->
-          <v-card-text
-            class="text-justify text-body-2 text-md-body-1 font-weight-bold"
-            style="color: white;"
-          >
+          <v-card-text class="text-justify text-body-2 text-md-body-1 font-weight-bold" style="color: white;">
             <strong class="text-primary">pedronogs: ~# </strong>
             Graduando em 
             <span style="border-bottom: solid 1px var(--primary-color)">Engenharia de Redes de Comunicação</span>
@@ -233,6 +230,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+#about-container {
+  position: relative;
+  z-index: 10;
+}
+
 #background-div {
   position: fixed !important;
   top: 0;
@@ -244,7 +246,7 @@ export default Vue.extend({
   z-index: 1;
 }
 
-#card-photo {
+#photo {
   width: 50%;
 
   border-radius: 1000px;
@@ -265,5 +267,14 @@ export default Vue.extend({
 
 /* Media queries */
 @media screen and (max-width: 960px) {
+  #about-container {
+    margin-top: 13vh !important;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  #photo-container {
+    width: 80%;
+  }
 }
 </style>

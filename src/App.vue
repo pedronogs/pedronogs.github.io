@@ -1,46 +1,85 @@
 <template>
   <v-app>
-    <!-- Sandwiched navigation drawer -->
+    <!-- Sandwiched navigation drawer for SM devices -->
     <v-navigation-drawer
-      absolute
+      fixed
       right
       class="pa-3"
       style="background-color: #565254; z-index: 20 !important;"
       v-model="drawer"
     >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title
-            style="color: var(--text-color); letter-spacing: 3px;"
+      <div class="d-flex flex-column pa-3" style="height: 100%;">
+        <span class="text-h5 font-weight-bold">MENU</span>
+
+        <!-- prettier-ignore -->
+        <div class="my-3" style="border-bottom: solid 1px var(--primary-color)"></div>
+
+        <div class="d-flex mt-5">
+          <i
+            class="fas fa-lg fa-user"
+            style="color: var(--primary-color); padding-top: 2px;"
+          ></i>
+
+          <router-link to="/" class="text-body-1 font-weight-bold ml-5"
+            >Sobre</router-link
           >
-            <strong>MENU</strong>
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        </div>
 
-      <v-divider></v-divider>
+        <div class="d-flex mt-8">
+          <i
+            class="fas fa-lg fa-tasks"
+            style="color: var(--primary-color); padding-top: 2px;"
+          ></i>
 
-      <v-list dense>
-        <v-list-item>
-          <v-list-item-icon>
-            <i class="fas fa-user" style="color: var(--primary-color)"></i>
-          </v-list-item-icon>
+          <router-link to="/projects" class="text-body-1 font-weight-bold ml-5"
+            >Projetos</router-link
+          >
+        </div>
 
-          <v-list-item-content>
-            <router-link to="/">Sobre</router-link>
-          </v-list-item-content>
-        </v-list-item>
+        <!-- Social media icons inside menu -->
+        <div
+          class="pa-6 mt-auto"
+          style="border-top: solid 1px var(--primary-color)"
+        >
+          <div class="d-flex justify-space-between">
+            <a href="https://www.linkedin.com/in/pedronogs/">
+              <div
+                class="social-icons pl-2 pr-2"
+                style="background: rgb(10, 102, 194);"
+              >
+                <i
+                  class="fab fa-linkedin-in"
+                  style="transform: translateY(10%)"
+                ></i>
+              </div>
+            </a>
 
-        <v-list-item>
-          <v-list-item-icon>
-            <i class="fas fa-tasks" style="color: var(--primary-color)"></i>
-          </v-list-item-icon>
+            <a href="https://github.com/pedronogs">
+              <div
+                class="social-icons ml-3 pl-2 pr-2"
+                style="background: #10851a;"
+              >
+                <i
+                  class="fab fa-github"
+                  style="transform: translateY(4%) translateX(0%);"
+                ></i>
+              </div>
+            </a>
 
-          <v-list-item-content>
-            <router-link to="/projects">Projetos</router-link>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+            <a href="https://instagram.com/pedronogs">
+              <div
+                class="social-icons ml-3 pl-2 pr-2"
+                style="background: rgb(151, 13, 89);"
+              >
+                <i
+                  class="fab fa-instagram"
+                  style="transform: translateX(2%) translateY(5%)"
+                ></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </v-navigation-drawer>
 
     <!-- Navbar -->
