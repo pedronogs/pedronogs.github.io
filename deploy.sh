@@ -3,9 +3,10 @@
 # Run build script
 yarn build
 
-# Add folder to HEAD and commit deployment
-git add dist && git commit -m "Deploying to GitHub Pages"
+# Add changes and commit
+cd dist
+git add --all
+git commit -m "Deploy to GitHub Pages"
 
-# Push to gh-pages branch
-git subtree push --prefix dist origin gh-pages
-
+# Push changes
+git push origin gh-pages
