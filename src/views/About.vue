@@ -21,6 +21,18 @@
       <div
         class="d-flex flex-column justify-center align-center mt-5 mt-md-0 ml-md-10"
       >
+        <!-- Curriculum download only appear on > MD devices -->
+        <v-btn
+          class="d-none d-md-flex ml-auto mb-3"
+          min-width="25%"
+          color="primary"
+          href="curriculo.pdf"
+          download="Curriculo_PedroHenrique"
+        >
+          BAIXAR CURRÍCULO
+          <i class="fas fa-download ml-3"></i>
+        </v-btn>
+
         <v-card
           shaped
           color="black"
@@ -28,7 +40,7 @@
           style="border-left: solid 2px var(--secondary-color) !important;"
         >
           <!-- prettier-ignore -->
-          <v-card-text class="text-justify text-body-2 text-md-body-1 font-weight-bold" style="color: white; letter-spacing: 1px!important;">
+          <v-card-text class="text-justify text-body-2 text-md-body-1 font-weight-bold" style="color: white;">
             <strong class="text-primary">pedronogs: ~# </strong>
             Graduando em 
             <span style="border-bottom: solid 1px var(--primary-color)">Engenharia de Redes de Comunicação</span>
@@ -53,9 +65,7 @@
         </v-card>
 
         <!-- Button to trigger details modal -->
-        <div
-          class="d-flex flex-column flex-md-row justify-space-between mt-5 mb-8 mb-md-0"
-        >
+        <div class="d-flex align-center justify-center mt-5 mb-8 mb-md-0">
           <v-btn
             min-width="25%"
             class="label-button"
@@ -63,6 +73,17 @@
           >
             VER MAIS
             <i class="fas fa-angle-down ml-5 mr-2" style="color: white"></i>
+          </v-btn>
+
+          <v-btn
+            class="d-md-none ml-3 ml-md-0"
+            min-width="25%"
+            color="primary"
+            href="curriculo.pdf"
+            download="Curriculo_PedroHenrique"
+          >
+            BAIXAR CURRÍCULO
+            <i class="fas fa-download ml-3"></i>
           </v-btn>
         </div>
       </div>
@@ -73,7 +94,7 @@
       v-model="modals.details.visible"
       class="pa-15"
       max-width="750px"
-      overlay-opacity="0.7"
+      overlay-opacity="0.8"
     >
       <v-tabs
         v-model="modals.details.tabs"
@@ -149,7 +170,9 @@
             </li>
           </ul>
 
-          <div class="d-flex justify-center pa-5">
+          <div
+            class="d-flex flex-column flex-md-row align-center justify-center pa-5"
+          >
             <v-btn
               style="width: 30%;"
               color="var(--primary-color)"

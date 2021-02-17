@@ -40,9 +40,11 @@
 
         <!-- Social media icons inside menu -->
         <div
-          class="pa-6 mt-auto"
+          class="d-flex flex-column align-center pa-6 mt-auto"
           style="border-top: solid 1px var(--primary-color)"
         >
+          <h3 class="text-button mb-3"><strong>Mídias Sociais</strong></h3>
+
           <div class="d-flex justify-space-between">
             <a href="https://www.linkedin.com/in/pedronogs/">
               <div
@@ -151,7 +153,9 @@
     </div>
 
     <v-main class="d-flex align-center">
-      <router-view />
+      <transition name="drain">
+        <router-view />
+      </transition>
     </v-main>
   </v-app>
 </template>
@@ -200,6 +204,24 @@ a {
 
 a:hover {
   filter: brightness(130%);
+}
+
+/* Transition */
+.drain-enter-active,
+.drain-leave-active {
+  transition: opacity 0.05s linear, transform 0.1s ease-out;
+}
+
+.drain-enter,
+.drain-leave-to {
+  opacity: 0;
+  transform: translateX(50%);
+}
+
+.drain-enter-to,
+.drain-leave {
+  opacity: 1;
+  transform: translateX(50%);
 }
 
 /* Vuetify customization */
