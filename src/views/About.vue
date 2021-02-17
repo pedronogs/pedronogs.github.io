@@ -21,19 +21,6 @@
       <div
         class="d-flex flex-column justify-center align-center mt-5 mt-md-0 ml-md-10"
       >
-        <div style="min-width: 100%;">
-          <v-btn
-            class="float-right mb-5"
-            color="primary"
-            v-if="randomWords.length > 0"
-            @click="
-              randomWords = [];
-              resetLabelCount();
-            "
-            >Limpar Tela</v-btn
-          >
-        </div>
-
         <v-card
           shaped
           color="black"
@@ -41,7 +28,7 @@
           style="border-left: solid 2px var(--secondary-color) !important;"
         >
           <!-- prettier-ignore -->
-          <v-card-text class="text-justify text-body-2 text-md-body-1 font-weight-bold" style="color: white;">
+          <v-card-text class="text-justify text-body-2 text-md-body-1 font-weight-bold" style="color: white; letter-spacing: 1px!important;">
             <strong class="text-primary">pedronogs: ~# </strong>
             Graduando em 
             <span style="border-bottom: solid 1px var(--primary-color)">Engenharia de Redes de Comunicação</span>
@@ -56,76 +43,181 @@
             <br />
 
             <i class="fas fa-angle-double-right ml-5 mr-2" style="color: var(--primary-color)"></i>
-            <strong>Redes de computadores</strong> (infraestrutura e administração). 
+            <span><strong>Redes</strong> (infraestrutura e administração de redes). </span>
             
             <br />
 
             <i class="fas fa-angle-double-right ml-5 mr-2" style="color: var(--primary-color)"></i>
-            <strong>Programação </strong>(desenvolvimento de software e automação de processos).
+            <span><strong>Programação </strong>(desenvolvimento de software e automação de processos).</span>
           </v-card-text>
         </v-card>
 
-        <div class="mt-4">
-          <h3>HABILIDADES</h3>
-        </div>
-
-        <!-- Dinamic buttons to display labels -->
+        <!-- Button to trigger details modal -->
         <div
-          class="d-flex flex-column flex-md-row justify-space-between mt-5 mb-16 mb-md-0"
+          class="d-flex flex-column flex-md-row justify-space-between mt-5 mb-8 mb-md-0"
         >
           <v-btn
             min-width="25%"
             class="label-button"
-            @click="
-              labels.languages.count++;
-              addRandomWord(labels.languages.values[labels.languages.count]);
-            "
+            @click="modals.details.visible = true"
           >
-            {{ labels.languages.values[labels.languages.count] }}
-            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
-          </v-btn>
-
-          <v-btn
-            min-width="25%"
-            class="label-button ml-0 ml-md-5 mt-5 mt-md-0"
-            @click="
-              labels.frameworks.count++;
-              addRandomWord(labels.frameworks.values[labels.frameworks.count]);
-            "
-          >
-            {{ labels.frameworks.values[labels.frameworks.count] }}
-            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
-          </v-btn>
-
-          <v-btn
-            min-width="25%"
-            class="label-button ml-0 ml-md-5 mt-5 mt-md-0"
-            @click="
-              labels.tools.count++;
-              addRandomWord(labels.tools.values[labels.tools.count]);
-            "
-          >
-            {{ labels.tools.values[labels.tools.count] }}
-            <i class="fas fa-angle-right ml-5 mr-2" style="color: white"></i>
+            VER MAIS
+            <i class="fas fa-angle-down ml-5 mr-2" style="color: white"></i>
           </v-btn>
         </div>
       </div>
     </div>
 
-    <!-- Random positioned words on screen  -->
-    <div id="background-div">
-      <span
-        :style="{
-          top: randomPosition() + 'px',
-          right: randomPosition(false) + 'px',
-          transform: 'rotate(' + randomPosition(false, true) + 'deg)',
-        }"
-        class="random-word text-caption text-md-body-1"
-        v-for="(word, index) in randomWords"
-        :key="index"
-        >{{ word }}</span
+    <!-- Modal to show more information on abilities etc... -->
+    <v-dialog
+      v-model="modals.details.visible"
+      class="pa-15"
+      max-width="750px"
+      overlay-opacity="0.7"
+    >
+      <v-tabs
+        v-model="modals.details.tabs"
+        dark
+        grow
+        show-arrows
+        color="var(--primary-color)"
       >
-    </div>
+        <v-tab>
+          Linguagens
+        </v-tab>
+
+        <v-tab>
+          Ferramentas
+        </v-tab>
+      </v-tabs>
+
+      <v-tabs-items dark v-model="modals.details.tabs">
+        <!-- Programming languages tab -->
+        <v-tab-item :key="'languages'">
+          <ul
+            class="d-flex flex-column flex-md-row justify-space-between py-8 pr-10"
+          >
+            <li>
+              <strong>WEB e Desktop:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  HTML / CSS.
+                </li>
+                <li class="list-item text-body-2">
+                  Javascript.
+                </li>
+                <li class="list-item text-body-2">
+                  Typescript.
+                </li>
+                <li class="list-item text-body-2">
+                  PHP.
+                </li>
+              </ul>
+            </li>
+
+            <li class="mt-3 mt-md-0">
+              <strong>Scripting e Geral:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  Python.
+                </li>
+                <li class="list-item text-body-2">
+                  C / C++.
+                </li>
+                <li class="list-item text-body-2">
+                  Bash (Shell scripting).
+                </li>
+              </ul>
+            </li>
+
+            <li class="mt-3 mt-md-0">
+              <strong>Banco de Dados:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  MySQL.
+                </li>
+                <li class="list-item text-body-2">
+                  PostgreSQL.
+                </li>
+                <li class="list-item text-body-2">
+                  OracleSQL.
+                </li>
+                <li class="list-item text-body-2">
+                  MongoDB.
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="d-flex justify-center pa-5">
+            <v-btn
+              style="width: 30%;"
+              color="var(--primary-color)"
+              @click="modals.details.visible = false"
+            >
+              FECHAR
+            </v-btn>
+          </div>
+        </v-tab-item>
+
+        <!-- Frameworks and tools tab  -->
+        <v-tab-item :key="'frameworks'">
+          <ul
+            class="d-flex flex-column flex-md-row justify-space-between py-8 pr-10"
+          >
+            <li>
+              <strong>Frameworks Front-End:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  Vue & Vuetify.
+                </li>
+                <li class="list-item text-body-2">
+                  Electron.
+                </li>
+                <li class="list-item text-body-2">
+                  Bootstrap & JQuery.
+                </li>
+              </ul>
+            </li>
+
+            <li class="mt-3 mt-md-0">
+              <strong>Frameworks Back-End:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  Node.
+                </li>
+                <li class="list-item text-body-2">
+                  Slim (PHP).
+                </li>
+              </ul>
+            </li>
+
+            <li class="mt-3 mt-md-0">
+              <strong>Ferramentas:</strong>
+              <ul>
+                <li class="list-item text-body-2">
+                  Git / GitHub / GitLab.
+                </li>
+                <li class="list-item text-body-2">
+                  Docker.
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="d-flex justify-center pa-5">
+            <v-btn
+              style="width: 30%;"
+              color="var(--primary-color)"
+              @click="modals.details.visible = false"
+            >
+              FECHAR
+            </v-btn>
+          </div>
+        </v-tab-item>
+        <v-tab-item :key="'ferramentas'">Teste</v-tab-item>
+      </v-tabs-items>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -136,96 +228,16 @@ export default Vue.extend({
   name: "About",
   data: function() {
     return {
-      labels: {
-        languages: {
-          values: [
-            "Linguagens",
-            "JavaScript",
-            "TypeScript",
-            "Python",
-            "C / C++",
-            "PHP",
-            "Bash",
-            "SQL",
-          ],
-          count: 0,
-        },
-        frameworks: {
-          values: [
-            "Frameworks",
-            "Vue (WEB, Front-End)",
-            "Electron (Desktop, Front-End)",
-            "SLIM (WEB, Back-End)",
-            "Node (WEB, Back-End)",
-            "PostgreSQL (Banco)",
-            "OracleSQL (Banco)",
-            "MongoDB (Banco)",
-          ],
-          count: 0,
-        },
-        tools: {
-          values: ["Ferramentas", "GIT", "Docker (Infra)", "Office"],
-          count: 0,
+      modals: {
+        details: {
+          visible: false,
+          tabs: 0 as number,
         },
       },
-      randomWords: [] as Array<string>,
     };
   },
 
-  watch: {
-    "labels.languages.count": function(oldValue) {
-      if (oldValue >= this.labels.languages.values.length) {
-        this.labels.languages.count = 0;
-      }
-    },
-
-    "labels.frameworks.count": function(oldValue) {
-      if (oldValue >= this.labels.frameworks.values.length) {
-        this.labels.frameworks.count = 0;
-      }
-    },
-
-    "labels.tools.count": function(oldValue) {
-      if (oldValue >= this.labels.tools.values.length) {
-        this.labels.tools.count = 0;
-      }
-    },
-  },
-
-  methods: {
-    // Calculates random position between window Height or Width (or rotation between 0 < 30  or 330 < 360)
-    randomPosition(vertical = true, rotation = false) {
-      if (rotation === true) {
-        let degree = Math.floor(Math.random() * 30);
-
-        if (degree % 2 == 0) degree = 360 - degree;
-
-        return degree;
-      }
-
-      let position = 0;
-      if (vertical === true)
-        position = Math.floor(Math.random() * (window.innerHeight - 200) + 100);
-      else
-        position = Math.floor(Math.random() * (window.innerWidth - 200) + 100);
-
-      return position;
-    },
-
-    // Add word to list of random positioned words if it's not present yet
-    addRandomWord(word: string) {
-      if (!this.randomWords.includes(word)) {
-        this.randomWords.push(word);
-      }
-    },
-
-    // Reset all label counting (return labels to default value)
-    resetLabelCount() {
-      this.labels.languages.count = 0;
-      this.labels.frameworks.count = 0;
-      this.labels.tools.count = 0;
-    },
-  },
+  methods: {},
 });
 </script>
 
@@ -258,11 +270,14 @@ export default Vue.extend({
   background-color: var(--primary-color) !important;
 }
 
-.random-word {
-  position: absolute !important;
-  font-weight: bolder;
-  opacity: 0.3;
+ul {
+  list-style: none;
+}
+
+.list-item::before {
+  content: "\2713";
   color: var(--secondary-color);
+  margin-right: 5px;
 }
 
 /* Media queries */

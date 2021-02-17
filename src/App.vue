@@ -11,8 +11,10 @@
       <div class="d-flex flex-column pa-3" style="height: 100%;">
         <span class="text-h5 font-weight-bold">MENU</span>
 
-        <!-- prettier-ignore -->
-        <div class="my-3" style="border-bottom: solid 1px var(--primary-color)"></div>
+        <div
+          class="my-3"
+          style="border-bottom: solid 1px var(--primary-color)"
+        ></div>
 
         <div class="d-flex mt-5">
           <i
@@ -69,7 +71,7 @@
             <a href="https://instagram.com/pedronogs">
               <div
                 class="social-icons ml-3 pl-2 pr-2"
-                style="background: rgb(151, 13, 89);"
+                style="background: #d3117c;"
               >
                 <i
                   class="fab fa-instagram"
@@ -83,13 +85,25 @@
     </v-navigation-drawer>
 
     <!-- Navbar -->
-    <div class="d-flex justify-space-between pt-5 px-md-16 px-5" id="navbar">
-      <span class="text-h5 text-primary">Pedro <strong>"Nogs"</strong></span>
+    <div
+      class="d-flex align-center justify-space-between pt-5 px-md-16 px-5"
+      id="navbar"
+    >
+      <div class="d-flex align-center">
+        <img
+          src="./assets/logo.png"
+          style="width: 60px; height: 60px; background-color: white; border-radius: 30px; border: 3px solid var(--primary-color); padding: 5px;"
+        />
+
+        <span class="text-h6 ml-5" style="text-transform: uppercase;">
+          Pedro <strong class="text-primary">"Nogs"</strong>
+        </span>
+      </div>
 
       <!-- Router for > SM devices -->
       <div class="d-sm-flex d-none">
         <div class="route-item text-button">
-          <router-link to="/" class="pa-3">Sobre</router-link>
+          <router-link to="/" class="pa-3">Sobre Mim</router-link>
         </div>
 
         <div class="route-item text-button">
@@ -121,10 +135,7 @@
         </a>
 
         <a href="https://instagram.com/pedronogs">
-          <div
-            class="social-icons ml-3 pl-2 pr-2"
-            style="background: rgb(151, 13, 89);"
-          >
+          <div class="social-icons ml-3 pl-2 pr-2" style="background: #d3117c;">
             <i
               class="fab fa-instagram"
               style="transform: translateX(-2%) translateY(2%)"
