@@ -9,6 +9,24 @@
     >
       <h1 class="d-md-none text-center">PRINCIPAIS REPOSITÓRIOS</h1>
 
+      <!-- Skeleton loader for cards -->
+      <v-skeleton-loader
+        v-if="repoData.length == 0"
+        class="pa-5"
+        width="350px"
+        type="card-avatar, article, actions"
+        tile="true"
+      ></v-skeleton-loader>
+
+      <!-- Skeleton loader for cards -->
+      <v-skeleton-loader
+        v-if="repoData.length == 0"
+        class="pa-5"
+        width="350px"
+        type="card-avatar, article, actions"
+        tile="true"
+      ></v-skeleton-loader>
+
       <v-card
         class="ml-0 ml-sm-3 mt-3"
         width="350px"
