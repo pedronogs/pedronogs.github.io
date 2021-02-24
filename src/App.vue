@@ -153,8 +153,10 @@
     </div>
 
     <v-main class="d-flex align-center">
-      <transition name="drain">
-        <router-view />
+      <transition name="fade">
+        <keep-alive>
+          <router-view />
+        </keep-alive>
       </transition>
     </v-main>
   </v-app>
@@ -207,21 +209,21 @@ a:hover {
 }
 
 /* Transition */
-.drain-enter-active,
-.drain-leave-active {
-  transition: opacity 0.05s linear, transform 0.1s ease-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.drain-enter,
-.drain-leave-to {
+.fade-enter,
+.fade-leave-to {
+  display: none;
   opacity: 0;
-  transform: translateX(50%);
 }
 
-.drain-enter-to,
-.drain-leave {
+.fade-enter-to,
+.fade-leave {
+  display: none;
   opacity: 1;
-  transform: translateX(50%);
 }
 
 /* Vuetify customization */
