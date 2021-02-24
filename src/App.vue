@@ -93,8 +93,8 @@
     >
       <div class="d-flex align-center">
         <img
-          src="./assets/logo.png"
-          style="width: 60px; height: 60px; background-color: white; border-radius: 30px; border: 3px solid var(--primary-color); padding: 5px;"
+          src="./assets/logo_light.png"
+          style="width: 60px; height: 60px; border: 2px solid var(--primary-color); border-radius: 30px;"
         />
 
         <span class="text-h6 ml-5" style="text-transform: uppercase;">
