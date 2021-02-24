@@ -29,6 +29,17 @@
 
         <div class="d-flex mt-8">
           <i
+            class="fas fa-lg fa-building"
+            style="color: var(--primary-color); padding-top: 2px;"
+          ></i>
+
+          <router-link to="/job" class="text-body-1 font-weight-bold ml-5"
+            >Trabalho</router-link
+          >
+        </div>
+
+        <div class="d-flex mt-8">
+          <i
             class="fas fa-lg fa-tasks"
             style="color: var(--primary-color); padding-top: 2px;"
           ></i>
@@ -106,6 +117,10 @@
       <div class="d-sm-flex d-none">
         <div class="route-item text-button">
           <router-link to="/" class="pa-3">Sobre Mim</router-link>
+        </div>
+
+        <div class="route-item text-button">
+          <router-link to="/job" class="pa-3">Trabalho</router-link>
         </div>
 
         <div class="route-item text-button">
